@@ -6,6 +6,7 @@ const EnrolleeNew = () => {
 	return (
 		<section className={style.wrapperContent}>
 			<Background />
+			<h1>Поступление осуществляется БЕЗ ВСТУПИТЕЛЬНЫХ ЭКЗАМЕНОВ на основании КОНКУРСА АТТЕСТАТОВ</h1>
 			<a
 				href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/enrollee-contacts`}
 				className={style.btnLink}

@@ -23,9 +23,9 @@ pipeline {
        stage('Restart with PM2') {
             steps {
                 sh '''
-                    sudo pm2 stop npm || true
-                    sudo pm2 delete npm || true
-                    sudo pm2 start npm -- start
+                    pm2 stop npm || true
+                    pm2 delete npm || true
+                    pm2 start npm -- start
                 '''
             }
        }

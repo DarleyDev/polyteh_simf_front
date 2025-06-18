@@ -59,7 +59,7 @@ const Table = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							ФОС ГИА
+							Оценочные материалы ГИА
 						</a>
 					</td>
 				</tr>
@@ -132,7 +132,7 @@ const Table = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							ФОС ГИА
+							Оценочные материалы ГИА
 						</a>
 					</td>
 				</tr>
@@ -205,7 +205,7 @@ const Table = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							ФОС ГИА
+							Оценочные материалы ГИА
 						</a>
 					</td>
 				</tr>
@@ -280,7 +280,7 @@ const Table = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							ФОС ГИА
+							Оценочные материалы ГИА
 						</a>
 					</td>
 				</tr>
@@ -355,7 +355,7 @@ const Table = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							ФОС ГИА
+							Оценочные материалы ГИА
 						</a>
 					</td>
 				</tr>
@@ -429,7 +429,7 @@ const Table = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							ФОС ГИА
+							Оценочные материалы ГИА
 						</a>
 					</td>
 				</tr>
@@ -503,7 +503,7 @@ const Table = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							ФОС ГИА
+							Оценочные материалы ГИА
 						</a>
 					</td>
 				</tr>
@@ -576,7 +576,7 @@ const Table = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							ФОС ГИА
+							Оценочные материалы ГИА
 						</a>
 					</td>
 				</tr>
@@ -649,7 +649,7 @@ const Table = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							ФОС ГИА
+							Оценочные материалы ГИА
 						</a>
 					</td>
 				</tr>
@@ -722,7 +722,7 @@ const Table = () => {
 							target='_blank'
 							rel='noopener noreferrer'
 						>
-							ФОС ГИА
+							Оценочные материалы ГИА
 						</a>
 					</td>
 				</tr>

@@ -22,7 +22,7 @@ const DormitoryPrice = () => {
 		<section className={style.dormitory__price}>
 			<div className={style.dormitory__price__title}>
 				<h3>
-					Стоимость проживания в общежитии с 01.12.2024 г. за одно койко-место:
+					Стоимость проживания в общежитии за одно койко-место:
 				</h3>
 				<p>Для обучающихся Колледжа за счет средств бюджета Республики Крым:</p>
 			</div>

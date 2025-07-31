@@ -1,5 +1,6 @@
 import CreatePage from './CreatePage'
 import DeletePage from './DeletePage'
+import EssentialLinks from './EditorEssentialLinks'
 import EditorPage from './EditorPage'
 import HeaderEditor from './HeaderEditor'
 import LinksEditor from './MainLinkEditor'
@@ -21,6 +22,7 @@ const MainMenu = ({ mainPanelType }) => {
 			{mainPanelType === 'editor-link-main' && <LinksEditor/>}
 			{mainPanelType === 'editor-poster' && <PosterApp/>}
 			{mainPanelType === 'editor-swiper' && <SwiperInner/>}
+			{mainPanelType === 'editor-essential-links' && <EssentialLinks/>}
 		</section>
 	)
 }

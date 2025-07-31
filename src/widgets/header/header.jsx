@@ -39,15 +39,6 @@ const months = [
 
 const menuLinks = [
 	{
-		url: '/enrollee_new',
-		text: 'Абитуриенту',
-		prefetch: true,
-	},
-	{
-		url: '/contacts',
-		text: 'Контакты',
-	},
-	{
 		url: '/schedule',
 		text: 'Расписание',
 		prefetch: true,

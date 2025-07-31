@@ -1,44 +1,47 @@
-import Link from 'next/link'
-import style from './EssentialLinks.module.scss'
+'use client';
 
-const data = [
-	{
-		text: 'Обучение с применением ЭО и ДОТ',
-		url: '/our-colleage/special-study',
-	},
-	{
-		text: 'Пройди бесплатное обучение',
-		url: '/our-colleage/free-study',
-	},
-	{
-		text: 'АИС «Электронный журнал»',
-		url: 'https://edu.rk.gov.ru/authorize',
-	},
-	{
-		text: 'Закрытое образовательное пространство для педагогов, учеников и их родителей  Сферум',
-		url: 'https://sferum.ru/?p=start',
-	},
-	{
-		text: 'Вы можете оставить мнение о нашей организации.',
-		url: '/our-colleage/mean',
-	},
-]
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import style from './EssentialLinks.module.scss';
 
-function EssentialLinks() {
-	return (
-		<>
-			<div className={style.delimiter}></div>
+export default function EssentialLinks() {
+  const [links, setLinks] = useState([]);
+  const [error, setError] = useState('');
 
-			<nav className={style.links}>
-				<h2 className={style.title}>Основные ссылки</h2>
-				{data.map(({ text, url }, index) => (
-					<li className={style.link} key={index}>
-						<Link href={url}>{text}</Link>
-					</li>
-				))}
-			</nav>
-		</>
-	)
+  useEffect(() => {
+    const fetchLinks = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/essential/essential-links`);
+        const data = await response.json();
+        if (response.ok) {
+          setLinks(data);
+        } else {
+          setError('Не удалось загрузить ссылки');
+        }
+      } catch (err) {
+        console.error('Ошибка при загрузке ссылок:', err);
+        setError('Ошибка при загрузке ссылок');
+      }
+    };
+
+    fetchLinks();
+  }, []);
+
+  return (
+    <>
+      <div className={style.delimiter}></div>
+
+      <nav className={style.links}>
+        <h2 className={style.title}>Основные ссылки</h2>
+        {error && <p className={style.error}>{error}</p>}
+        <ul>
+          {links.map(({ text, url, _id }, index) => (
+            <li className={style.link} key={_id || index}>
+              <Link href={url}>{text}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </>
+  );
 }
-
-export default EssentialLinks

@@ -19,12 +19,12 @@ const data = [
 	{
 		image: it,
 		text: 'Технико-информационное отделение',
-		link: '/technical-departament',
+		link: '/our-colleage/technical-departament-one',
 	},
 	{
 		image: money,
 		text: 'Отделение пищевых технологий, экономико-бухгалтерского учета и гостиничного дела',
-		link: '/economic-departament',
+		link: '/our-colleage/economic-departament-one',
 	},
 
 	{

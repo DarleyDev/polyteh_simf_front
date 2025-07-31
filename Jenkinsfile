@@ -32,7 +32,6 @@ pipeline {
 
                     # Сохраняем список процессов PM2
                     pm2 save
-                    pm2 startup 
                 '''
             }
         }

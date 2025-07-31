@@ -1,119 +1,87 @@
 /** @format */
 
-"use client";
+'use client'
 
-import useMediaQuery from "@app/hooks/useMediaQuery";
-import logo from "@public/assets/icons/logo.svg?url";
-import Link from "next/link";
-import { useState } from "react";
-import style from "./About.module.scss";
-// import useDevice from '@app/hooks/useDevice'
-
-const links = [
-  {
-    text: "Основные сведения",
-    href: "/our-colleage/basic-information",
-  },
-  {
-    text: "Структура и органы управления образовательной организацией",
-    href: "/our-colleage/structure",
-  },
-  { text: "Документы", href: "/", isList: true },
-  { text: "Образование", href: "/", isList: true },
-  {
-    text: "Руководство",
-    href: "/",
-    isList: true,
-  },
-  {
-    text: "Педагогический состав",
-    href: "/",
-    isList: true,
-  },
-  {
-    text: "Материально-техническое обеспечение и оснащённость образовательного процесса. Доступная среда",
-    href: "/our-colleage/logistics",
-  },
-  {
-    text: "Платные образовательные услуги",
-    href: "/our-colleage/paid",
-    isList: true,
-  },
-  {
-    text: "Финансово-хозяйственная деятельность",
-    href: "/our-colleage/financial-economic",
-    isList: true,
-  },
-  {
-    text: "Вакантные места для приёма (перевода) обучающихся",
-    href: "/our-colleage/vacancies",
-  },
-  { text: "Стипендии и меры поддержки обучающихся", href: "/", isList: true },
-  { text: "Международное сотрудничество", href: "/our-colleage/international" },
-  {
-    text: "Организация питания в образовательной организации",
-    href: "/nutrition",
-    isList: true,
-  },
-  { text: "Образовательные стандарты и требования", href: "/", isList: true },
-];
+import useMediaQuery from '@app/hooks/useMediaQuery'
+import logo from '@public/assets/icons/logo.svg?url'
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import style from './About.module.scss'
+import axios from 'axios'
 
 function About() {
-  // const device = useDevice()
+  const [links, setLinks] = useState([])
+  const [activeSubMenu, setActiveSubMenu] = useState([])
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
-  const [activeSubMenu, setActiveSubMenu] = useState(
-    Array(links.length).fill("")
-  );
+  const API_BASE_URL = `${process.env.NEXT_PUBLIC_SERVER_URL}/linkglobal`
 
-  let isMobile = useMediaQuery("(max-width: 768px)");
-  // if (device?.isMobile) {
-  //   isMobile = device?.isMobile || false
-  // }
+  let isMobile = useMediaQuery('(max-width: 768px)')
+
+  // Fetch links data on mount
+  useEffect(() => {
+    const fetchLinks = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/content`, {
+        })
+        setLinks(response.data.links || [])
+        setActiveSubMenu(Array(response.data.links.length).fill(''))
+        setIsLoading(false)
+      } catch (err) {
+        setError('Не удалось загрузить ссылки')
+        setIsLoading(false)
+      }
+    }
+    fetchLinks()
+  }, [])
 
   const mobileHandleClick = (linkText, index) => {
-    if (!isMobile) return;
+    if (!isMobile) return
 
     setActiveSubMenu((prevActiveSubMenu) => {
-      const newActiveSubMenu = [...prevActiveSubMenu];
-      const isOpened = newActiveSubMenu[index];
+      const newActiveSubMenu = [...prevActiveSubMenu]
+      const isOpened = newActiveSubMenu[index]
 
       if (isOpened) {
-        newActiveSubMenu[index] = "";
-        return newActiveSubMenu;
+        newActiveSubMenu[index] = ''
+        return newActiveSubMenu
       }
 
-      newActiveSubMenu.map((item, index) => {
-        if (!item) return;
-        newActiveSubMenu[index] = "";
-      });
+      newActiveSubMenu.forEach((item, idx) => {
+        if (item) newActiveSubMenu[idx] = ''
+      })
 
-      newActiveSubMenu[index] = linkText;
-      return newActiveSubMenu;
-    });
-  };
+      newActiveSubMenu[index] = linkText
+      return newActiveSubMenu
+    })
+  }
 
   const handleMouseEnter = (linkText, index) => {
-    if (isMobile) return;
+    if (isMobile) return
 
     setActiveSubMenu((prevActiveSubMenu) => {
-      const newActiveSubMenu = [...prevActiveSubMenu];
-      newActiveSubMenu[index] = linkText;
-      return newActiveSubMenu;
-    });
-  };
+      const newActiveSubMenu = [...prevActiveSubMenu]
+      newActiveSubMenu[index] = linkText
+      return newActiveSubMenu
+    })
+  }
 
   const handleMouseLeave = (index) => {
-    if (isMobile) return;
+    if (isMobile) return
 
     setActiveSubMenu((prevActiveSubMenu) => {
-      const newActiveSubMenu = [...prevActiveSubMenu];
-      newActiveSubMenu[index] = "";
-      return newActiveSubMenu;
-    });
-  };
+      const newActiveSubMenu = [...prevActiveSubMenu]
+      newActiveSubMenu[index] = ''
+      return newActiveSubMenu
+    })
+  }
+
+  if (isLoading) return <div className="text-center mt-8 text-white">Загрузка...</div>
+  if (error) return <div className="text-red-500 text-center mt-8">{error}</div>
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center h-screen">
       <section className={style.about}>
         <div className={style.container}>
           <div>
@@ -129,342 +97,14 @@ function About() {
                   {link.isList ? (
                     <>
                       {link.text}
-
-                      {activeSubMenu[index] === "Документы" ? (
-                        <ul
-                          className={style.subLinks}
-                          onMouseEnter={() =>
-                            handleMouseEnter(link.text, index)
-                          }
-                        >
-                          <li>
-                            <Link href="https://simfpolyteh.ru/api/uploads/1713264198801.pdf">
-                              Устав образовательной организации
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/api/uploads/1713265738394.pdf">
-                              Правила внутреннего распорядка обучающихся
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/labor-regulations">
-                              Правила внутреннего трудового распорядка
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/collectiv-dogovor">
-                              Коллективный договор
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/local-act">
-                              Локальные нормативные акты образовательной
-                              организации по основным вопросам организации и
-                              осуществления образовательной деятельности
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/self-examination-report">
-                              Отчет о результатах самообследования
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/authority-regulations">
-                              Предписания органов, осуществляющих контроль
-                              (надзор) в сфере образования
-                            </Link>
-                          </li>
+                      {(activeSubMenu[index] === link.text) && link.subLinks.length > 0 && (
+                        <ul className={style.subLinks}>
+                          {link.subLinks.map((subLink, subIndex) => (
+                            <li key={subIndex}>
+                              <Link href={subLink.href || '#'}>{subLink.text || 'Без названия'}</Link>
+                            </li>
+                          ))}
                         </ul>
-                      ) : activeSubMenu[index] === "Образование" ? (
-                        <ul
-                          className={style.subLinks}
-                          onMouseEnter={() =>
-                            handleMouseEnter(link.text, index)
-                          }
-                        >
-                          <li>
-                            <Link href="https://simfpolyteh.ru/relazie-programmers">
-                              Реализуемые образовательные программы с указанием
-                              учебных предметов, курсов, дисциплин (модулей),
-                              практик
-                            </Link>
-                          </li>
-
-                          {/* <li>
-                          <Link href="https://simfpolyteh.ru/our-colleage/desc-programs">
-                            Описание образовательных программ
-                          </Link>
-                        </li> */}
-
-                          {/* <li>
-                          <Link href="https://simfpolyteh.ru/our-colleage/students-count">
-                            Численность обучающихся
-                          </Link>
-                        </li> */}
-                          <li>
-                            <Link
-                              rel="stylesheet"
-                              href="https://simfpolyteh.ru/our-colleage/ways-and-results-sience"
-                            >
-                              Направление и результаты
-                              (научно-исследовательской) деятельности
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/count-sdudents-programm">
-                              Численность обучающихся по реализуемым
-                              образовательным программам за счет бюджетных
-                              ассигнований и по договорам об образовании за счет
-                              средств физических и (или) юридических лиц
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/count--sdunents-outer">
-                              Численность обучающихся, являющихся иностранными
-                              гражданами, по каждой специальности, направлению
-                              подготовки, укрупленной группы специальности
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://simfpolyteh.ru/api/uploads/1721162505656.pdf">
-                              Языки образования
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/svedenya-about-results-spo">
-                              Результаты приема по каждой специальности СПО,
-                              направлению подготовки с различиными условиями
-                              приема
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/trudoistvo-gradualades">
-                              Трудоустройство выпускников в виде численности
-                              трудоустроенных выпускников прошлого учебного
-                              года, освоивших ОПОП СПО по каждой специальности
-                            </Link>
-                          </li>
-
-                          {/* <li>
-                          <Link href="https://simfpolyteh.ru/our-colleage/admission-results">
-                            Сведения о результатах приема
-                          </Link>
-                        </li> */}
-
-                          {/* <li>
-                          <Link href="https://simfpolyteh.ru/our-colleage/translation-results">
-                            Сведения о результатах перевода
-                          </Link>
-                        </li> */}
-
-                          {/* <li>
-                          <Link href="https://simfpolyteh.ru/our-colleage/results-reinstatement-expulsion">
-                            Сведения о результатах восстановления и отчисления
-                          </Link>
-                        </li> */}
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/union">
-                              Учебно-методические объединения
-                            </Link>
-                          </li>
-                        </ul>
-                      ) : activeSubMenu[index] ===
-                        "Образовательные стандарты и требования" ? (
-                        <ul
-                          className={style.subLinks}
-                          onMouseEnter={() =>
-                            handleMouseEnter(link.text, index)
-                          }
-                        >
-                          <li>
-                            <Link href="https://simfpolyteh.ru/fgos-page">
-                              Федеральные государственные образовательные
-                              стандарты
-                            </Link>
-                          </li>
-                        </ul>
-                      ) : activeSubMenu[index] === "Руководство" ? (
-                        <ul
-                          className={style.subLinks}
-                          onMouseEnter={() =>
-                            handleMouseEnter(link.text, index)
-                          }
-                        >
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/management">
-                              Руководство
-                            </Link>
-                          </li>
-                        </ul>
-                      ) : activeSubMenu[index] === "Педагогический состав" ? (
-                        <ul
-                          className={style.subLinks}
-                          onMouseEnter={() =>
-                            handleMouseEnter(link.text, index)
-                          }
-                        >
-                          <li>
-                            <Link href="https://simfpolyteh.ru/api/uploads/1728466191918.pdf">
-                              Педагогический состав
-                            </Link>
-                          </li>
-                        </ul>
-                      ) : activeSubMenu[index] ===
-                        "Стипендии и меры поддержки обучающихся" ? (
-                        <ul
-                          className={style.subLinks}
-                          onMouseEnter={() =>
-                            handleMouseEnter(link.text, index)
-                          }
-                        >
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/scholarship">
-                              О наличии и условиях предоставления обучающимся
-                              стипендий
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/social-support">
-                              О наличии и условиях предоставления обучающимся
-                              мер социальной поддержки
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/availability-hostel">
-                              О наличии общежития
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/dormitory-rooms-count">
-                              О количестве жилых помещений в общежитии для
-                              иногородних обучающихся
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/dormitory-pay">
-                              О формировании платы за проживание в общежитии
-                            </Link>
-                          </li>
-
-                          {/* <li>
-                          <Link href="https://simfpolyteh.ru/our-colleage/employment">
-                            О трудоустройстве выпускников
-                          </Link>
-                        </li> */}
-                        </ul>
-                      ) : activeSubMenu[index] ===
-                        "Платные образовательные услуги" ? (
-                        <ul
-                          className={style.subLinks}
-                          onMouseEnter={() =>
-                            handleMouseEnter(link.text, index)
-                          }
-                        >
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/poryadok-okazania-yslyg">
-                              Порядок оказания платных образовательных услуг
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/obrazez-dogovora">
-                              Образец договора об оказании платных
-                              образовательных услуг
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/utverjdenie-stoimosti-obuchenia">
-                              Об утверждении стоимости обучения по каждой
-                              образовательной программе
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/ystanovlenie-razmera-platy">
-                              Установление размера платы, взимаемой с родителей
-                              (законных представителей) за присмотр и уход за
-                              детьми
-                            </Link>
-                          </li>
-                        </ul>
-                      ) : activeSubMenu[index] ===
-                        "Финансово-хозяйственная деятельность" ? (
-                        <ul
-                          className={style.subLinks}
-                          onMouseEnter={() =>
-                            handleMouseEnter(link.text, index)
-                          }
-                        >
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/obem-obrazovat-deyatelnosti">
-                            Об объеме образовательной деятельности, финансовое 
-                            обеспечение которой осуществляется за счет бюджетных ассигнований и по 
-                            договрам об оказании платных образовательных услуг
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/postuplenie-finansovyh-sredstv">
-                              О поступлении финансовых и материальных средств по
-                              итогам финансового года
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/rashodovanie-finansovyh-sredstv">
-                              О расходовании финансовых и материальных средств
-                              по итогам финансового года
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/plan-finansovo-hoz-deyat">
-                            План финансово-хозяйственной деятельности (или бюджетная
-                              смета образовательной организации) 
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/ostanlnoe-fin-hoz">
-                              Разное
-                            </Link>
-                          </li>
-                        </ul>
-                      ) : activeSubMenu[index] ===
-                        "Организация питания в образовательной организации" ? (
-                        <ul
-                          className={style.subLinks}
-                          onMouseEnter={() =>
-                            handleMouseEnter(link.text, index)
-                          }
-                        >
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/yslovia-pitania-ohrany-zd">
-                              Условия питания и охраны здоровья обучающихся
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link href="https://simfpolyteh.ru/our-colleage/yslovia-pitania">
-                              Условия питания обучающихся по образовательным
-                              программам начального общего образования
-                            </Link>
-                          </li>
-                        </ul>
-                      ) : (
-                        <></>
                       )}
                     </>
                   ) : (
@@ -504,8 +144,8 @@ function About() {
       <Link href="/enrollee" className={style.getEducationButton}>
         Получи востребованную специальность!
       </Link>
-    </>
-  );
+    </div>
+  )
 }
 
-export default About;
+export default About

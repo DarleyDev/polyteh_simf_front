@@ -13,6 +13,7 @@ const LeftMenu = React.memo(function LeftMenu({
     { item: "Создать новый аккаунт", name: "create-account" },
     { item: "Редактирование навигации", name: "editor-page-editor" },
     { item: "Редактирование файлов", name: "editor-files-editor" },
+    { item: "Редактирование ссылок на главной странице", name: "editor-link-main" },
   ];
   return (
     <section className={style.left__menu}>

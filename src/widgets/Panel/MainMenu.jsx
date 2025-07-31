@@ -2,6 +2,7 @@ import CreatePage from './CreatePage'
 import DeletePage from './DeletePage'
 import EditorPage from './EditorPage'
 import HeaderEditor from './HeaderEditor'
+import LinksEditor from './MainLinkEditor'
 import style from './Panel.module.scss'
 import SaveFiles from './SaveFiles'
 import ScheduleEditor from './ScheduleEditor/ScheduleEditor'
@@ -15,6 +16,7 @@ const MainMenu = ({ mainPanelType }) => {
 			{mainPanelType === 'edit-schedule' && <ScheduleEditor />}
 			{mainPanelType === 'editor-page-editor' && <HeaderEditor />}
 			{mainPanelType === 'editor-files-editor' && <SaveFiles />}
+			{mainPanelType === 'editor-link-main' && <LinksEditor/>}
 		</section>
 	)
 }

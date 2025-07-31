@@ -24,12 +24,13 @@ const data = [
 		url: '/our-colleage/mean',
 	},
 ]
+const mainurl = `${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/poster.jpg`
 
 function AboutImage() {
 	return (
 		<>
 			<div className={style.links__link}>
-				<img src={image.src} alt='image' />
+				<img src={mainurl} alt='image' />
 				<Link href='/our-colleage'>Наш колледж</Link>
 			</div>
 		</>

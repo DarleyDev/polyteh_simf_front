@@ -14,6 +14,7 @@ const LeftMenu = React.memo(function LeftMenu({
     { item: "Редактирование навигации", name: "editor-page-editor" },
     { item: "Редактирование файлов", name: "editor-files-editor" },
     { item: "Редактирование ссылок на главной странице", name: "editor-link-main" },
+    { item: "Редактирование плаката", name: "editor-poster" },
   ];
   return (
     <section className={style.left__menu}>

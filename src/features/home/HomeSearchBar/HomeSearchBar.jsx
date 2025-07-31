@@ -9,7 +9,7 @@ const searchData = [
 
 	{
 		keywords: ['ДПО', 'LGJ', 'Дополнительное профессиональное образование'],
-		link: '/our-colleage/dpo',
+		link: '/our-colleage/dpo-one',
 		text: 'Профессиональное обучение и дополнительное профессиональное образование',
 	},
 
@@ -225,7 +225,7 @@ const searchData = [
 
 	{
 		keywords: ['Вода', 'Озера', 'Реки', 'Море'],
-		link: '/water-rules',
+		link: '/our-colleage/water-rules-one',
 		text: 'Правила поведения в близи водоемов',
 	},
 

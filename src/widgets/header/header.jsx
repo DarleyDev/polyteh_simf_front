@@ -45,7 +45,7 @@ const menuLinks = [
 	},
 
 	{
-		url: '/dpo',
+		url: '/our-colleage/dpo-one',
 		text: 'Профессиональное обучение и дополнительное профессиональное образование',
 	},
 
@@ -57,16 +57,16 @@ const menuLinks = [
 	{ url: '/our-colleage/olimpiads', text: 'Олимпиады' },
 
 	{
-		url: '/water-rules',
+		url: '/our-colleage/water-rules-one',
 		text: 'Правила поведения в близи водоемов',
 	},
 
 	{
-		url: 'https://simfpolyteh.ru/our-colleage/nacproject',
+		url: '/our-colleage/nacproject',
 		text: "Национальный проект 'Образования'",
 	},
 	{
-		url: '/anti-corruption',
+		url: '/our-colleage/anti-corruption-one',
 		text: 'Противодействие коррупции',
 	},
 ]

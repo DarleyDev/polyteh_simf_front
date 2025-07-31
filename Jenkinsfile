@@ -20,14 +20,28 @@ pipeline {
             }
         }
 
-       stage('Restart with PM2') {
+        stage('Restart with PM2') {
             steps {
                 sh '''
-                    pm2 stop npm || true
-                    pm2 delete npm || true
-                    pm2 start npm -- start
+                    # Останавливаем и удаляем предыдущий процесс (если есть)
+                    pm2 stop frontend-app || true
+                    pm2 delete frontend-app || true
+
+                    # Запускаем приложение 
+                    pm2 start npm --name "frontend-app" -- run start  # или "npm run prod"
+
+                    # Сохраняем список процессов PM2
+                    pm2 save
+                    pm2 startup 
                 '''
             }
-       }
+        }
+    }
+
+    post {
+        always {
+            // Очистка (если нужно)
+            sh 'pm2 list'
+        }
     }
 }

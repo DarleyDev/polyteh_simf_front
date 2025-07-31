@@ -30,7 +30,7 @@ const data = [
 	{
 		image: full,
 		text: 'Отделение общеобразовательной подготовки',
-		link: 'general-education-departament',
+		link: '/our-colleage/general-education-departament-one',
 	},
 ]
 

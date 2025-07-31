@@ -7,6 +7,7 @@ import style from './Panel.module.scss'
 import PosterApp from './PosterEditor'
 import SaveFiles from './SaveFiles'
 import ScheduleEditor from './ScheduleEditor/ScheduleEditor'
+import SwiperInner from './SwiperEditor'
 
 const MainMenu = ({ mainPanelType }) => {
 	return (
@@ -19,6 +20,7 @@ const MainMenu = ({ mainPanelType }) => {
 			{mainPanelType === 'editor-files-editor' && <SaveFiles />}
 			{mainPanelType === 'editor-link-main' && <LinksEditor/>}
 			{mainPanelType === 'editor-poster' && <PosterApp/>}
+			{mainPanelType === 'editor-swiper' && <SwiperInner/>}
 		</section>
 	)
 }

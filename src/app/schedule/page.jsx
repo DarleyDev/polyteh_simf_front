@@ -133,10 +133,8 @@ export default async function Schedule() {
 				</p>
 
 				<img
-					src={bellImg.src}
+					src="https://simfpolyteh.ru/api/uploads/1756754045370.png"
 					alt='Расписание звонков'
-					width={1572}
-					height={1163}
 				/>
 			</section>
 

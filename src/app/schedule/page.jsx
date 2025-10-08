@@ -53,35 +53,39 @@ export default async function Schedule() {
 		<main className={style.scheduleRoot}>
 			<h1 className={style.schedule__title}>Расписание</h1>
 			<section className={style.schedule__block}>
-				<ul className='files-block'>
-					{files && files[0] ? (
-						files[0].map(({ file, name }) => (
-							<li key={name}>
-								<Link
-									href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
-								>
-									{name}
-								</Link>
-							</li>
-						))
-					) : (
-						<p>Загрузка...</p>
-					)}
-				</ul>
-			</section>
-			<section className={style.schedule__block}>
-				<ul className='files-block'>
-					<li>
-						<Link href='/our-colleage/zaoch-form'>
-							График учебного процесса Заочной формы обучения
-						</Link>
-					</li>
-					<li>
-						<Link href='/our-colleage/och-form'>
-							График учебного процесса Очной формы обучения
-						</Link>
-					</li>
-				</ul>
+				<div className={style.schedule__files}>
+					<h3 className={style.schedule__files__title}>Расписание занятий</h3>
+					<ul className='files-block'>
+						{files && files[0] ? (
+							files[0].map(({ file, name }) => (
+								<li key={name}>
+									<Link
+										href={`${process.env.NEXT_PUBLIC_SERVER_URL}/uploads/${file}`}
+									>
+										{name}
+									</Link>
+								</li>
+							))
+						) : (
+							<p>Загрузка...</p>
+						)}
+					</ul>
+				</div>
+				<div className={style.schedule__files}>
+					<h3 className={style.schedule__files__title}>Графики учебного процесса</h3>
+					<ul className='files-block'>
+						<li>
+							<Link href='/our-colleage/zaoch-form'>
+								График учебного процесса Заочной формы обучения
+							</Link>
+						</li>
+						<li>
+							<Link href='/our-colleage/och-form'>
+								График учебного процесса Очной формы обучения
+							</Link>
+						</li>
+					</ul>
+				</div>
 			</section>
 			<span style={{ marginTop: '1rem' }}>{schedule.date}</span>
 			<section className={style.wrapperCorpus}>

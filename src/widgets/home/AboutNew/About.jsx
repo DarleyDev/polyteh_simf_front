@@ -81,10 +81,39 @@ function About() {
   if (error) return <div className="text-red-500 text-center mt-8">{error}</div>
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className={style.aboutNew}>
       <section className={style.about}>
         <div className={style.container}>
-          <div>
+          <div className={style.info}>
+            <div className={style.logo}>
+              <img src={logo.src} alt="Логотип колледжа" />
+            </div>
+            <p className={style.title}>Современное образование!</p>
+          </div>
+
+          <div className={style.data}>
+            <div className={style.card}>
+              <p className={style.subInfoTop}>более</p>
+              <p className={style.mainInfo}>2000</p>
+              <p className={style.subInfoBottom}>студентов</p>
+            </div>
+            <div className={style.card}>
+              <p className={style.subInfoTop}>всего</p>
+              <p className={style.mainInfo}>10</p>
+              <p className={style.subInfoBottom}>специальностей</p>
+            </div>
+            <div className={style.card}>
+              <p className={style.subInfoTop}>заинтересованных</p>
+              <p className={style.mainInfo}>200+</p>
+              <p className={style.subInfoBottom}>работодателей</p>
+            </div>
+          </div>
+
+          <Link href="/enrollee" className={style.getEducationButton}>
+            Получи востребованную специальность!
+          </Link>
+
+          <div className={style.linksSection}>
             <ul className={style.links}>
               {links.map((link, index) => (
                 <li
@@ -116,34 +145,6 @@ function About() {
           </div>
         </div>
       </section>
-      <div className={style.info}>
-        <div className={style.logo}>
-          <img src={logo.src} />
-        </div>
-        <p className={style.title}>Современное образование!</p>
-      </div>
-
-      <div className={style.data}>
-        <div className={style.card}>
-          <p className={style.subInfoTop}>более</p>
-          <p className={style.mainInfo}>2000</p>
-          <p className={style.subInfoBottom}>студентов</p>
-        </div>
-        <div className={style.card}>
-          <p className={style.subInfoTop}>всего</p>
-          <p className={style.mainInfo}>10</p>
-          <p className={style.subInfoBottom}>специальностей</p>
-        </div>
-        <div className={style.card}>
-          <p className={style.subInfoTop}>заинтересованных</p>
-          <p className={style.mainInfo}>200+</p>
-          <p className={style.subInfoBottom}>работодателей</p>
-        </div>
-      </div>
-
-      <Link href="/enrollee" className={style.getEducationButton}>
-        Получи востребованную специальность!
-      </Link>
     </div>
   )
 }

@@ -127,15 +127,15 @@ function About() {
                   {link.isList ? (
                     <>
                       {link.text}
-                      {(activeSubMenu[index] === link.text) && link.subLinks.length > 0 && (
-                        <ul className={style.subLinks}>
+                      <ul className={`${style.subLinks} ${activeSubMenu[index] === link.text ? style.active : ''}`}>
+                        <div>
                           {link.subLinks.map((subLink, subIndex) => (
                             <li key={subIndex}>
                               <Link href={subLink.href || '#'}>{subLink.text || 'Без названия'}</Link>
                             </li>
                           ))}
-                        </ul>
-                      )}
+                        </div>
+                      </ul>
                     </>
                   ) : (
                     <Link href={link.href}>{link.text}</Link>

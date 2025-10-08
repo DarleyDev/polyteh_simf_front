@@ -184,6 +184,18 @@
 
 .subLinks {
     color: white;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-in-out;
+    overflow: hidden;
+
+    &.active {
+        grid-template-rows: 1fr;
+    }
+
+    & > div {
+        min-height: 0;
+    }
 
     & li {
         transition: .3s;
@@ -229,6 +241,7 @@
 
     font-size: 1.2rem;
     transition: .4s;
+    cursor: default;
 
     &:hover {
         color: var(--color-blue);

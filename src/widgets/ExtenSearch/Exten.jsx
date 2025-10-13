@@ -1,6 +1,6 @@
 'use client'
 import search from '@public/assets/icons/search.svg?url'
-import 'ckeditor5/ckeditor5.css'
+// import 'ckeditor5/ckeditor5.css'
 import Link from 'next/link'
 import { useState } from 'react'
 import style from './style.module.scss'

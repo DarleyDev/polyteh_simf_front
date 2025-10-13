@@ -1,6 +1,6 @@
 import About from '@widgets/home/AboutNew/About'
 import axios from 'axios'
-// import 'ckeditor5/ckeditor5.css' // Импортируем стили для CKEditor
+import 'ckeditor5/ckeditor5.css' // Импортируем стили для CKEditor
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'

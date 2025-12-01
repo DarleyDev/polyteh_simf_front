@@ -1,6 +1,10 @@
 pipeline {
     agent any
-
+    
+    triggers {
+        // Запуск 1-го числа каждого месяца в 00:00
+        cron('0 0 1 * *')
+    }
     stages {
         stage('Checkout') {
             steps {

@@ -37,7 +37,7 @@ const EnrolleeNew = () => {
 			<div className={style.content}>
 				<div className={style.columnFirst}>
 					<a
-						href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/enrollee-etap-post`}
+						href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/our-colleage/enrollee-etap-post`}
 						className={style.btnLink}
 					>
 						ЭТАПЫ ПОСТУПЛЕНИЯ

@@ -69,7 +69,7 @@ const EnrolleeNew = () => {
 				</div>
 				<div className={style.columnSecond}>
 					<a
-						href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/enrollee-specialnosti`}
+						href="https://uploads.simfpolyteh.ru/17541616068344.html"
 						className={style.btnLink}
 					>
 						СПЕЦИАЛЬНОСТИ

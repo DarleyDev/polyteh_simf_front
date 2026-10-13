@@ -133,3 +133,7 @@ input {
 	background: var(--color-dark);
 	color: #fff !important; /* Уберите кавычки */
 }
+
+#contactus {
+  scroll-margin-top: 150px; // подберите высоту под вашу шапку
+}
